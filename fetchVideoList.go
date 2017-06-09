@@ -12,16 +12,6 @@ import (
 //先抓顶部分类
 //在分类获取详细页链接
 
-func contains(slice []string, item string) bool {
-	set := make(map[string]struct{}, len(slice))
-	for _, s := range slice {
-		set[s] = struct{}{}
-	}
-
-	_, ok := set[item]
-	return ok
-}
-
 func fetchVideoList() (videos []Video) {
 	urlApplePrefix := "https://developer.apple.com"
 
@@ -77,5 +67,6 @@ func fetchVideoList() (videos []Video) {
 	}
 	videosJson, _ := json.MarshalIndent(videos, "", " ")
 	ioutil.WriteFile("output.json", videosJson, 0644)
+
 	return videos
 }

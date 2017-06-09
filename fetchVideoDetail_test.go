@@ -27,6 +27,9 @@ func TestFetchVideoDetail(t *testing.T) {
 func TestBatchFetchVideoDetails(t *testing.T) {
 	batchFetchVideoDetails()
 
+}
+func TestPrintDetails(t *testing.T) {
 
+	exportVideo()
 
 }

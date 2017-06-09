@@ -11,6 +11,52 @@ import (
 	"sync"
 )
 
+var downloadLinks []string
+
+func exportVideo() {
+	//json 解析之后
+	buf, err := ioutil.ReadFile("output_detail.json")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "File Error: %s\n", err)
+	}
+	var videos []Video
+	json.Unmarshal(buf, &videos)
+	fmt.Println(videos, err)
+
+	//所有sd link
+	var allSDLinks []string
+	for _, v := range videos {
+		if v.VideoSD != "" {
+			allSDLinks = append(allSDLinks, v.VideoSD)
+		}
+	}
+
+	//所有hd link
+	var allHDLinks []string
+	for _, v := range videos {
+		if v.VideoHD != "" {
+			allHDLinks = append(allHDLinks, v.VideoHD)
+		}
+	}
+	//所有resource link
+	var allResourcesLink []string
+	for _, v := range videos {
+		for _, w := range v.Resources {
+			if w.URL != "" && w.Type != "link" {
+				allResourcesLink = append(allResourcesLink, w.URL)
+			}
+		}
+	}
+
+	//最后txt 写入
+	//print(strings.Join(allSDLinks[:], "\n"))
+
+	//print(strings.Join(allHDLinks, "\n"))
+
+	print(strings.Join(allResourcesLink, "\n"))
+
+}
+
 func batchFetchVideoDetails() []Video {
 	//json 解析之后
 	buf, err := ioutil.ReadFile("output.json")
@@ -37,6 +83,7 @@ func batchFetchVideoDetails() []Video {
 				v = fetchVideoDetail(v)
 				fmt.Println(v.VideoSD)
 				videosNew = append(videosNew, v)
+
 			}
 		}()
 	}
@@ -50,6 +97,11 @@ func batchFetchVideoDetails() []Video {
 	//最后json 写入
 	videosJson, _ := json.MarshalIndent(videosNew, "", " ")
 	ioutil.WriteFile("output_detail.json", videosJson, 0644)
+
+	//最后json 写入下载链接
+	downloadLinksJson, _ := json.MarshalIndent(downloadLinks, "", " ")
+	ioutil.WriteFile("output_downloadLinksJson.json", downloadLinksJson, 0644)
+
 	return videosNew
 }
 func fetchVideoDetail(v Video) Video {
@@ -73,9 +125,11 @@ func fetchVideoDetail(v Video) Video {
 
 		if strings.Contains(href, "_hd_") {
 			v.VideoHD = href
+			downloadLinks = append(downloadLinks, href)
 		}
 		if strings.Contains(href, "_sd_") {
 			v.VideoSD = href
+			downloadLinks = append(downloadLinks, href)
 		}
 
 	})
@@ -85,15 +139,19 @@ func fetchVideoDetail(v Video) Video {
 		href := documentA.AttrOr("href", "")
 		text := documentA.Text()
 
-		if strings.Contains(href, "pdf") {
-			typeS = "pdf"
-		}
-		if strings.Contains(href, "zip") {
-			typeS = "code"
-		}
 		resource := Resource{}
 		resource.Title = text
 		resource.URL = href
+
+		if strings.Contains(href, "pdf") {
+			typeS = "pdf"
+			downloadLinks = append(downloadLinks, href)
+
+		}
+		if strings.Contains(href, "zip") {
+			typeS = "code"
+			downloadLinks = append(downloadLinks, href)
+		}
 		resource.Type = typeS
 
 		v.Resources = append(v.Resources, resource)
