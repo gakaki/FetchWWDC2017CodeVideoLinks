@@ -1,9 +1,12 @@
 package fetchAppleWWDC2017
 
 import (
+	"bufio"
+	"encoding/json"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/parnurzeal/gorequest"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -129,4 +132,55 @@ func AppendStringToFile(path, text string) error {
 		return err
 	}
 	return nil
+}
+
+func writeToJSON(v interface{}, fileName string) {
+	json_str, _ := json.MarshalIndent(v, "", " ")
+	if len(fileName) == 0 {
+		fileName = "output.json"
+	}
+	ioutil.WriteFile(fileName, json_str, 0644)
+}
+func readJsonAndDeserialize(fileName string) []Video {
+	if len(fileName) == 0 {
+		fileName = "output.json"
+	}
+	buf, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "File Error: %s\n", err)
+	}
+	var v []Video
+	json.Unmarshal(buf, &v)
+	fmt.Println(v, err)
+	return v
+}
+
+func readLines(path string) ([]string, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	var lines []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	return lines, scanner.Err()
+}
+
+// writeLines writes the lines to the given file.
+func writeLines(lines []string, path string) error {
+	file, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	w := bufio.NewWriter(file)
+	for _, line := range lines {
+		fmt.Fprintln(w, line)
+	}
+	return w.Flush()
 }

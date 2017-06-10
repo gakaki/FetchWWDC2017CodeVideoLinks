@@ -1,10 +1,8 @@
 package fetchAppleWWDC2017
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
-	"io/ioutil"
 	"log"
 	"strings"
 )
@@ -22,6 +20,7 @@ func fetchVideoList() (videos []Video) {
 		log.Print(e, " 出错了 系列页访问出错")
 	}
 
+	var videos_in_categories [][]Video
 	//var category_map = make(map[string]string)
 	doc.Find(".collection-focus-group").Each(func(i int, node *goquery.Selection) {
 
@@ -29,18 +28,19 @@ func fetchVideoList() (videos []Video) {
 		category_title := node.Find("span.focus-group-link span.font-bold").Text()
 		//category_map[category_id] = category_title
 
-		doc.Find(".collection-item").Each(func(i int, node *goquery.Selection) {
+		var videos_in_category []Video
+		node.Find(".collection-item").Each(func(j int, node_sub *goquery.Selection) {
 
-			imgNode := node.Find(".col-30 img").Eq(0)
+			imgNode := node_sub.Find(".col-30 img").Eq(0)
 			imageUrl := imgNode.AttrOr("src", "")
 
-			aNode := node.Find(".col-70 a").Eq(0)
+			aNode := node_sub.Find(".col-70 a").Eq(0)
 			detailUrl := aNode.AttrOr("href", "")
 			detailUrl = urlApplePrefix + detailUrl
 			title := aNode.Find("h4").Eq(0).Text()
 
-			sessionName := node.Find(".col-70 .video-tags .event span.smaller").Eq(0).Text()
-			tags := node.Find(".col-70 .video-tags .focus span.smaller").Eq(0).Text()
+			sessionName := node_sub.Find(".col-70 .video-tags .event span.smaller").Eq(0).Text()
+			tags := node_sub.Find(".col-70 .video-tags .focus span.smaller").Eq(0).Text()
 
 			c := Category{}
 			c.ID = category_id
@@ -58,15 +58,24 @@ func fetchVideoList() (videos []Video) {
 			v.Image = imageUrl
 			v.DetailUrl = detailUrl
 
-			videos = append(videos, v)
+			videos_in_category = append(videos_in_category, v)
 		})
+
+		videos_in_categories = append(videos_in_categories, videos_in_category)
 	})
+
+	for _, videos_in_category := range videos_in_categories {
+		for _, v := range videos_in_category {
+			videos = append(videos, v)
+		}
+	}
 
 	for _, v := range videos {
 		fmt.Println(">>>>>>", v)
 	}
-	videosJson, _ := json.MarshalIndent(videos, "", " ")
-	ioutil.WriteFile("output.json", videosJson, 0644)
+	fmt.Println(">>>>>> 获得视频数量为:", len(videos))
+
+	writeToJSON(videos, "output.json")
 
 	return videos
 }

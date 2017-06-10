@@ -11,9 +11,7 @@ import (
 	"sync"
 )
 
-var downloadLinks []string
-
-func exportVideo() {
+func exportVideosData() {
 	//json 解析之后
 	buf, err := ioutil.ReadFile("output_detail.json")
 	if err != nil {
@@ -49,24 +47,16 @@ func exportVideo() {
 	}
 
 	//最后txt 写入
-	//print(strings.Join(allSDLinks[:], "\n"))
+	writeLines(allSDLinks, "links_sd.txt")
+	writeLines(allHDLinks, "links_hd.txt")
+	writeLines(allResourcesLink, "links_resources.txt")
 
-	//print(strings.Join(allHDLinks, "\n"))
-
-	print(strings.Join(allResourcesLink, "\n"))
-
+	print("all sd links count is ", len(allSDLinks))
 }
 
 func batchFetchVideoDetails() []Video {
 	//json 解析之后
-	buf, err := ioutil.ReadFile("output.json")
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "File Error: %s\n", err)
-	}
-	var videos []Video
-	json.Unmarshal(buf, &videos)
-	fmt.Println(videos, err)
-
+	videos := readJsonAndDeserialize("output.json")
 	//go chan 并发
 	maxWorkerCount := 20
 	queue := make(chan Video, maxWorkerCount)
@@ -94,14 +84,7 @@ func batchFetchVideoDetails() []Video {
 	close(queue)
 	wg.Wait()
 
-	//最后json 写入
-	videosJson, _ := json.MarshalIndent(videosNew, "", " ")
-	ioutil.WriteFile("output_detail.json", videosJson, 0644)
-
-	//最后json 写入下载链接
-	downloadLinksJson, _ := json.MarshalIndent(downloadLinks, "", " ")
-	ioutil.WriteFile("output_downloadLinksJson.json", downloadLinksJson, 0644)
-
+	writeToJSON(videosNew, "output_detail.json")
 	return videosNew
 }
 func fetchVideoDetail(v Video) Video {
@@ -125,11 +108,9 @@ func fetchVideoDetail(v Video) Video {
 
 		if strings.Contains(href, "_hd_") {
 			v.VideoHD = href
-			downloadLinks = append(downloadLinks, href)
 		}
 		if strings.Contains(href, "_sd_") {
 			v.VideoSD = href
-			downloadLinks = append(downloadLinks, href)
 		}
 
 	})
@@ -145,17 +126,14 @@ func fetchVideoDetail(v Video) Video {
 
 		if strings.Contains(href, "pdf") {
 			typeS = "pdf"
-			downloadLinks = append(downloadLinks, href)
 
 		}
 		if strings.Contains(href, "zip") {
 			typeS = "code"
-			downloadLinks = append(downloadLinks, href)
 		}
 		resource.Type = typeS
 
 		v.Resources = append(v.Resources, resource)
-
 	})
 
 	return v
