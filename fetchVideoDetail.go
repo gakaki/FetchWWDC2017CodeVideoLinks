@@ -1,10 +1,8 @@
 package fetchAppleWWDC2017
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
-	"io/ioutil"
 	"os"
 	"runtime"
 	"strings"
@@ -12,14 +10,8 @@ import (
 )
 
 func exportVideosData() {
-	//json 解析之后
-	buf, err := ioutil.ReadFile("output_detail.json")
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "File Error: %s\n", err)
-	}
-	var videos []Video
-	json.Unmarshal(buf, &videos)
-	fmt.Println(videos, err)
+
+	videos := readJsonAndDeserialize("output_detail.json")
 
 	//所有sd link
 	var allSDLinks []string
@@ -41,9 +33,14 @@ func exportVideosData() {
 	for _, v := range videos {
 		for _, w := range v.Resources {
 			if w.URL != "" && w.Type != "link" {
+				//println(v.ID, v.Title, w.Type, w.URL)
 				allResourcesLink = append(allResourcesLink, w.URL)
 			}
+			//else {
+			//	println(w.Type, "", w.URL)
+			//}
 		}
+		println("\n", getUrlFileName(v.VideoSD))
 	}
 
 	//最后txt 写入
@@ -101,9 +98,7 @@ func fetchVideoDetail(v Video) Video {
 
 	link_node := doc.Find(".links").Eq(0)
 
-	var typeS = "link"
-
-	doc.Find(".video a").Each(func(j int, node *goquery.Selection) {
+	link_node.Find("li.video a").Each(func(j int, node *goquery.Selection) {
 		href := node.AttrOr("href", "")
 
 		if strings.Contains(href, "_hd_") {
@@ -112,7 +107,6 @@ func fetchVideoDetail(v Video) Video {
 		if strings.Contains(href, "_sd_") {
 			v.VideoSD = href
 		}
-
 	})
 
 	link_node.Find("li.document,li.download").Each(func(j int, node *goquery.Selection) {
@@ -124,12 +118,14 @@ func fetchVideoDetail(v Video) Video {
 		resource.Title = text
 		resource.URL = href
 
-		if strings.Contains(href, "pdf") {
-			typeS = "pdf"
+		var typeS = "link"
 
-		}
-		if strings.Contains(href, "zip") {
+		if strings.Contains(href, ".pdf") {
+			typeS = "pdf"
+		} else if strings.Contains(href, ".zip") {
 			typeS = "code"
+		} else {
+			typeS = "link"
 		}
 		resource.Type = typeS
 

@@ -1,5 +1,10 @@
 package fetchAppleWWDC2017
 
+import (
+	"net/url"
+	"strings"
+)
+
 type Video struct {
 	ID          string   `json:"id"`
 	Title       string   `json:"title"`
@@ -18,6 +23,17 @@ type Video struct {
 	VideoHD string `json:"videoHD"`
 
 	Resources []Resource `json:"resources"`
+}
+
+func getUrlFileName(s string) string {
+
+	u, err := url.Parse(s)
+	if err != nil {
+		panic(err)
+	}
+	values := strings.Split(u.Path, "/")
+	res := values[len(values)-1]
+	return res
 }
 
 type Category struct {
