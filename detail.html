@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="Author" content="Apple Inc." />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="mask-icon" href="/apple-logo.svg" color="#333333">
+
+    <link rel="stylesheet" href="/assets/styles/globalnav.css?1" type="text/css" />
+    <link rel="stylesheet" href="/assets/styles/global.dist.css" type="text/css" />
+
+    <script src="/assets/scripts/lib/jquery/jquery-1.11.0.min.js"></script>
+    <script src="/assets/scripts/lib/jquery/jquery.retinate.js"></script>
+    <script src="/assets/scripts/global.js"></script>
+    <script src="/assets/scripts/global-logout.js"></script>
+    <link rel="stylesheet" href="https://www.apple.com/wss/fonts?family=SF+Pro&v=2" type="text/css" />
+    <link rel="stylesheet" href="https://www.apple.com/wss/fonts?family=SF+Pro+Icons&v=1" type="text/css" />
+    <link rel="stylesheet" href="https://www.apple.com/wss/fonts?family=SF+Mono&v=2" type="text/css" />
+    <link rel="stylesheet" href="https://www.apple.com/wss/fonts?family=Apple+Icons&amp;v=1" type="text/css" />
+
+    <meta name="omni_page" content="Network Extensions for the Modern Mac - WWDC 2019 - Videos" />
+    <title>Network Extensions for the Modern Mac - WWDC 2019 - Videos - Apple Developer</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link type="text/css" rel="stylesheet" href="/videos/styles/videos.css">
+    <meta name="description" content="Learn about powerful new APIs in macOS that you can use to create apps that extend and customize the networking capabilities of macOS...">
+
+    <meta property="og:url" content="https://developer.apple.com/videos/play/wwdc2019/714/" />
+    <meta property="og:title" content="Network Extensions for the Modern Mac - WWDC 2019 - Videos - Apple Developer" />
+    <meta property="og:description" content="Learn about powerful new APIs in macOS that you can use to create apps that extend and customize the networking capabilities of macOS..." />
+    <meta property="og:site_name" content="Apple Developer" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://devimages-cdn.apple.com/wwdc-services/images/48/2902/2902_wide_250x141_2x.jpg" />
+    <meta property="og:locale" content="en_US" />
+
+</head>
+<body class="view-play theme-dark">
+
+<aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr">
+</aside>
+<input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate" />
+<nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
+    <div class="ac-gn-content">
+        <ul class="ac-gn-header">
+            <li class="ac-gn-item ac-gn-menuicon">
+                <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+					<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+						<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+					</span>
+                    <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+						<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+					</span>
+                </label>
+                <a href="#ac-gn-menustate" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
+                    <span class="ac-gn-menuanchor-label">Global Nav Open Menu</span>
+                </a>
+                <a href="#" role="button" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
+                    <span class="ac-gn-menuanchor-label">Global Nav Close Menu</span>
+                </a>
+            </li>
+            <li class="ac-gn-item ac-gn-apple">
+                <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus-small">
+                    <span class="ac-gn-link-text">Apple Developer</span>
+                </a>
+            </li>
+        </ul>
+        <div class="ac-gn-search-placeholder-container" role="search">
+            <div class="ac-gn-search ac-gn-search-small">
+                <a id="ac-gn-link-search-small" class="ac-gn-link" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer">
+                    <div class="ac-gn-search-placeholder-bar">
+                        <div class="ac-gn-search-placeholder-input">
+                            <div class="ac-gn-search-placeholder-input-text" aria-hidden="true">
+                                <div class="ac-gn-link-search ac-gn-search-placeholder-input-icon"></div>
+                                <span class="ac-gn-search-placeholder">Search Developer</span>
+                            </div>
+                        </div>
+                        <div class="ac-gn-searchview-close ac-gn-searchview-close-small ac-gn-search-placeholder-searchview-close">
+                            <span class="ac-gn-searchview-close-cancel" aria-hidden="true">Cancel</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <ul class="ac-gn-list">
+            <li class="ac-gn-item ac-gn-apple">
+                <a class="ac-gn-link ac-gn-link-apple-developer" href="/" data-analytics-title="appledeveloper home" id="ac-gn-firstfocus">
+                    <span class="ac-gn-link-text">Apple Developer</span>
+                </a>
+            </li>
+            <li class="ac-gn-item ac-gn-item-menu ac-gn-discover">
+                <a class="ac-gn-link ac-gn-link-discover" href="/discover/" data-analytics-title="discover">
+                    <span class="ac-gn-link-text">Discover</span>
+                </a>
+            </li>
+            <li class="ac-gn-item ac-gn-item-menu ac-gn-design">
+                <a class="ac-gn-link ac-gn-link-design" href="/design/" data-analytics-title="design">
+                    <span class="ac-gn-link-text">Design</span>
+                </a>
+            </li>
+            <li class="ac-gn-item ac-gn-item-menu ac-gn-develop">
+                <a class="ac-gn-link ac-gn-link-develop" href="/develop/" data-analytics-title="develop">
+                    <span class="ac-gn-link-text">Develop</span>
+                </a>
+            </li>
+            <li class="ac-gn-item ac-gn-item-menu ac-gn-distribute">
+                <a class="ac-gn-link ac-gn-link-distribute" href="/distribute/" data-analytics-title="distribute">
+                    <span class="ac-gn-link-text">Distribute</span>
+                </a>
+            </li>
+            <li class="ac-gn-item ac-gn-item-menu ac-gn-dsupport">
+                <a class="ac-gn-link ac-gn-link-dsupport" href="/support/" data-analytics-title="dsupport">
+                    <span class="ac-gn-link-text">Support</span>
+                </a>
+            </li>
+            <li class="ac-gn-item ac-gn-item-menu ac-gn-account">
+                <a class="ac-gn-link ac-gn-link-account" href="/account/" data-analytics-title="account">
+                    <span class="ac-gn-link-text">Account</span>
+                </a>
+            </li>
+            <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+                <a id="ac-gn-link-search" class="ac-gn-link ac-gn-link-search" href="/search/" data-analytics-title="search" data-analytics-click="search" data-analytics-intrapage-link aria-label="Search Developer"></a>
+            </li>
+        </ul>
+        <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
+            <div class="ac-gn-searchview-content">
+                <div class="ac-gn-searchview-bar">
+                    <div class="ac-gn-searchview-bar-wrapper">
+                        <form id="ac-gn-searchform" class="ac-gn-searchform" action="/search/" method="get">
+                            <div class="ac-gn-searchform-wrapper">
+                                <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" name="q" aria-label="Search Developer" placeholder="Search Developer" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-owns="quicklinks suggestions" />
+                                <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit Search"></button>
+                                <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search">
+                                    <span class="ac-gn-searchform-reset-background"></span>
+                                </button>
+                            </div>
+                        </form>
+                        <button id="ac-gn-searchview-close-small" class="ac-gn-searchview-close ac-gn-searchview-close-small" aria-label="Cancel Search">
+								<span class="ac-gn-searchview-close-cancel" aria-hidden="true">
+									Cancel
+								</span>
+                        </button>
+                    </div>
+                </div>
+                <aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+            </div>
+            <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Cancel Search">
+					<span class="ac-gn-searchview-close-wrapper">
+						<span class="ac-gn-searchview-close-left"></span>
+						<span class="ac-gn-searchview-close-right"></span>
+					</span>
+            </button>
+        </aside>
+    </div>
+</nav>
+<div class="ac-gn-blur"></div>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+<script src="/assets/scripts/ac-globalnav.built.js"></script>
+
+<!-- metrics -->
+<script>
+    /* RSID: */
+    var s_account="awdappledeveloper"
+</script>
+<script src="/assets/metrics/scripts/analytics.js"></script>
+<script>
+    s.pageName= AC && AC.Tracking && AC.Tracking.pageName();
+    s.channel="www.en.developer"
+    s.channel="www.videos.developer";
+
+
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+    var s_code=s.t();if(s_code)document.write(s_code)
+</script>
+<!-- /metrics -->
+<main id="main" class="main theme-dark" role="main">
+
+    <section class="bg-dark">
+
+        <section class="grid">
+
+            <section class="row">
+                <section class="column large-10 small-12  padding-top-small large-centered no-padding-bottom">
+                    <!-- back link -->
+                    <p class="back-link smaller">
+                        <a class="arrow-left" href="/videos/wwdc2019/">Back to WWDC 2019</a>
+                    </p>
+                </section>
+            </section>
+
+            <!-- video player -->
+            <section class="video-wrapper row">
+                <section class="column large-10 small-12  padding-top-small padding-bottom-small large-centered">
+                    <video id="video" class="video large-centered" controls="" src="https://devstreaming-cdn.apple.com/videos/wwdc/2019/714kr380j0vbvxv/714/hls_vod_mvp.m3u8" autoplay data-id="2100">
+
+                    </video>
+                    <div class="no-video-banner hidden">
+                        <div class="no-video-copy">
+                            <p>Streaming is available in most browsers,<br> and in the WWDC app.</p>
+                        </div>
+                        </span>
+                    </div>
+                </section>
+            </section>
+
+        </section>
+
+    </section>
+
+    <section class="grid">
+
+        <!-- tab menu -->
+        <section class="tab-menu row divider-bottom">
+
+            <section class="column large-10 small-12  padding-top-small padding-bottom-small large-centered">
+
+                <ul class="tabs">
+                    <li class="tab" data-supplement-id="details"><a href="#"><span class="smaller">Overview</span></a></li>
+
+
+
+                </ul>
+            </section>
+
+        </section>
+
+        <!-- supplements -->
+        <section class="row">
+
+            <section class="column large-10 small-12  large-centered no-padding-top no-padding-bottom">
+
+                <ul class="supplements hidden">
+
+                    <!-- details -->
+                    <li class="supplement details " data-supplement-id="details">
+
+                        <h1>Network Extensions for the Modern Mac</h1>
+                        <p>Learn about powerful new APIs in macOS that you can use to create apps that extend and customize the networking capabilities of macOS without using kernel extensions.</p>
+                        <p class="smaller lighter">WWDC 2019 - Session 714
+                            - macOS</p>
+
+                        <h2>Resources</h2>
+
+                        <ul class="links small">
+                            <li class="download"><a href="https://developer.apple.com/documentation/networkextension/filtering_network_traffic" target="_blank">Filtering Network Traffic</a></li>
+
+                            <li class="download">
+                                <ul class="options">
+                                    <li><a href="https://devstreaming-cdn.apple.com/videos/wwdc/2019/714kr380j0vbvxv/714/714_hd_network_extensions_for_the_modern_mac.mp4?dl=1">HD Video</a></li>
+                                    <li><a href="https://devstreaming-cdn.apple.com/videos/wwdc/2019/714kr380j0vbvxv/714/714_sd_network_extensions_for_the_modern_mac.mp4?dl=1">SD Video</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="download"><a href="https://devstreaming-cdn.apple.com/videos/wwdc/2019/714kr380j0vbvxv/714/714_network_extensions_for_the_modern_mac.pdf?dl=1">Presentation Slides (PDF)</a></li>
+                        </ul>
+
+                        <div class="divider-top margin-top-small padding-bottom-small"></div>
+                        <h2>Related Videos</h2>
+                        <h4>WWDC 2019</h4>
+                        <ul class="links small">
+                            <li class="video">
+                                <a href="/videos/play/wwdc2019/701">Advances in macOS Security</a>
+                            </li>
+                            <li class="video">
+                                <a href="/videos/play/wwdc2019/712">Advances in Networking, Part 1</a>
+                            </li>
+                            <li class="video">
+                                <a href="/videos/play/wwdc2019/713">Advances in Networking, Part 2</a>
+                            </li>
+                            <li class="video">
+                                <a href="/videos/play/wwdc2019/702">System Extensions and DriverKit</a>
+                            </li>
+                            <li class="video">
+                                <a href="/videos/play/wwdc2019/210">What’s New in AppKit for macOS</a>
+                            </li>
+                        </ul>
+                        <h4>WWDC 2015</h4>
+                        <ul class="links small">
+                            <li class="video">
+                                <a href="/videos/play/wwdc2015/717">What's New in Network Extension and VPN</a>
+                            </li>
+                        </ul>
+
+
+                    </li>
+
+                    <!-- transcript -->
+                    <li class="supplement transcript" data-supplement-id="transcript" data-shortcut-base-url="/videos/play/wwdc2019-714/">
+                        <section>
+                            <div class="margin-bottom-small download-transcript"><span id="get-transcript" class="icon icon-before icon-downloadcircle">Download</span></div>
+                            Array
+                        </section>
+                    </li>
+
+                    <!-- search -->
+                    <li class="supplement search active" data-supplement-id="search">
+
+                        <section class="transcript-results-summary">
+                            <p class="message smaller lighter"><!-- to be populated --></p>
+                            <p class="instructions smaller lighter text-center">Looking for something specific? Enter a topic above and jump straight to the good stuff.</p>
+                            <p class="error smaller lighter italic text-center" style="display:none;">An error occurred when submitting your query. Please check your Internet connection and try again.</p>
+                        </section>
+
+                        <!-- search results -->
+                        <ul class="transcript-results row">
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </section>
+
+        </section>
+
+    </section>
+
+    <input id="analytics-meta" type="hidden" data-event-name="WWDC 2019"
+           data-event-id="wwdc2019-714"
+           data-session-id="714"
+           data-video-name="Network Extensions for the Modern Mac"
+           data-session-response-id="">
+</main>
+
+<div id="globalfooter-wrapper">
+    <footer id="globalfooter" role="contentinfo">
+        <nav class="footer-breadory">
+            <a href="/" class="home breadcrumbs-home"><span aria-hidden="true"></span><span class="breadcrumbs-home-label">Developer</span></a>
+            <section class="breadcrumbs">
+                <ol class="breadcrumbs-list">
+                    <li><a href="/videos/">Videos</a></li>
+                    <li><a href="/videos/wwdc2019/">WWDC 2019</a></li>						<li>Network Extensions for the Modern Mac</li>
+                </ol>
+            </section>
+            <div id="directorynav" class="directorynav">
+                <div id="dn-cola" class="column">
+                    <h3><a href="/discover/">Discover</a></h3>
+                    <ul>
+                        <li><a href="/macos/">macOS</a></li>
+                        <li><a href="/ios/">iOS</a></li>
+                        <li><a href="/watchos/">watchOS</a></li>
+                        <li><a href="/tvos/">tvOS</a></li>
+                        <li><a href="/safari/">Safari and Web</a></li>
+                        <li><a href="/games/">Games</a></li>
+                        <li><a href="/business/">Business</a></li>
+                        <li><a href="/education/">Education</a></li>
+                        <li><a href="/wwdc/">WWDC</a></li>
+                    </ul>
+                </div>
+                <div id="dn-colb" class="column">
+                    <h3><a href="/design/">Design</a></h3>
+                    <ul>
+                        <li><a href="/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+                        <li><a href="/design/resources/">Resources</a></li>
+                        <li><a href="/videos/design/">Videos</a></li>
+                        <li><a href="/design/awards/">Apple Design Awards</a></li>
+                        <li><a href="/fonts/">Fonts</a></li>
+                        <li><a href="/accessibility/">Accessibility</a></li>
+                        <li><a href="/internationalization/">Internationalization</a></li>
+                        <li><a href="/accessories/">Accessories</a></li>
+
+                    </ul>
+                </div>
+                <div id="dn-colc" class="column">
+                    <h3><a href="/develop/">Develop</a></h3>
+                    <ul>
+                        <li><a href="/xcode/">Xcode</a></li>
+                        <li><a href="/swift/">Swift</a></li>
+                        <li><a href="/swift-playgrounds/">Swift Playgrounds</a></li>
+                        <li><a href="/testflight/">TestFlight</a></li>
+                        <li><a href="/documentation/">Documentation</a></li>
+                        <li><a href="/videos/">Videos</a></li>
+                        <li><a href="/download/">Downloads</a></li>
+                    </ul>
+                </div>
+                <div id="dn-cold" class="column">
+                    <h3><a href="/distribute/">Distribute</a></h3>
+                    <ul>
+                        <li><a href="/programs/">Developer Program</a></li>
+                        <li><a href="/app-store/">App Store</a></li>
+                        <li><a href="/app-store/review/">App Review</a></li>
+                        <li><a href="/macos/distribution/">Mac Software</a></li>
+                        <li><a href="/business/distribute/">Apps for Business</a></li>
+                        <li><a href="/safari/extensions/">Safari Extensions</a></li>
+                        <li><a href="/app-store/marketing/guidelines/">Marketing Resources</a></li>
+                        <li><a href="/softwarelicensing/">Trademark Licensing</a></li>
+                    </ul>
+                </div>
+                <div id="dn-cole" class="column">
+                    <h3><a href="/support/">Support</a></h3>
+                    <ul>
+                        <li><a href="/support/articles/">Articles</a></li>
+                        <li><a href="https://forums.developer.apple.com">Developer Forums</a></li>
+                        <li><a href="/bug-reporting/">Feedback &amp; Bug&nbsp;Reporting</a></li>
+                        <li><a href="/system-status/">System Status</a></li>
+                        <li><a href="/contact/">Contact Us</a></li>
+                    </ul>
+                    <h3><a href="/account/">Account</a></h3>
+                    <ul>
+                        <li><a href="/account/ios/certificate/">Certificates, Identifiers &amp; Profiles</a></li>
+                        <li><a href="https://appstoreconnect.apple.com/">App Store Connect</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+        <div class="ac-gf-footer-legal">
+            <div class="ac-gf-footer-news">To view the latest developer news, visit <a href="/news/">News and Updates</a>.</div>
+            <div class="ac-gf-footer-legal-copyright">Copyright ©  2019 Apple Inc. All rights reserved.</div>
+            <div class="ac-gf-footer-legal-links">
+                <a href="https://www.apple.com/legal/internet-services/terms/site.html" class="first">Terms of Use</a>
+                <a href="https://www.apple.com/legal/privacy/en-ww/">Privacy Policy</a>
+                <a href="/terms/">License Agreements</a>
+            </div>
+            <div class="ac-gf-footer-language-links">
+                <a href="/cn/" lang="zh" class="first">简体中文</a>
+                <a href="/jp/" lang="ja">日本語</a>
+                <a href="/kr/" lang="ko">한국어</a>
+            </div>
+        </div>
+
+    </footer>
+</div>
+
+<script src="/assets/scripts/params.js"></script>
+<script src="/assets/scripts/watchable.js"></script>
+<script src="/assets/scripts/timeout.js"></script>
+
+<script src="/videos/scripts/play/play.js?2"></script>
+<script src="/videos/scripts/hls/hls.min.js"></script>
+
+</body>
+</html>

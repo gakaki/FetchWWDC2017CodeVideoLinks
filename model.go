@@ -1,4 +1,4 @@
-package fetchAppleWWDC2017
+package fetchAppleWWDC2019
 
 import (
 	"net/url"
@@ -6,6 +6,7 @@ import (
 )
 
 type Video struct {
+	//list page
 	ID          string   `json:"id"`
 	Title       string   `json:"title"`
 	SessionName string   `json:"sessionName"`
@@ -19,8 +20,11 @@ type Video struct {
 	Image     string `json:"image"`
 	Desc      string `json:"desc"`
 
+	//detail page
 	VideoSD string `json:"videoSD"`
 	VideoHD string `json:"videoHD"`
+
+	PDF   string `json:"PDF"`
 
 	Resources []Resource `json:"resources"`
 }

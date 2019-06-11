@@ -1,4 +1,4 @@
-package fetchAppleWWDC2017
+package fetchAppleWWDC2019
 
 import (
 	"bufio"
@@ -78,8 +78,8 @@ func getContentFromUrl(url string) (*goquery.Document, error) {
 	httpClient := gorequest.New()
 	httpClient.Debug = debug
 
-	//超时2秒 并且重试三次
-	request := gorequest.New().Timeout(20 * time.Second)
+	//超时10秒 并且重试三次
+	request := gorequest.New().Timeout(10 * time.Second)
 	resp, body, errs := request.Get(url).Retry(3, 2*time.Second, http.StatusBadRequest, http.StatusInternalServerError, http.StatusGatewayTimeout).
 		End()
 

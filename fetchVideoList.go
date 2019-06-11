@@ -1,4 +1,4 @@
-package fetchAppleWWDC2017
+package fetchAppleWWDC2019
 
 import (
 	"fmt"
@@ -11,10 +11,11 @@ import (
 //在分类获取详细页链接
 
 func fetchVideoList() (videos []Video) {
-	urlApplePrefix := "https://developer.apple.com"
 
-	url := urlApplePrefix + "/videos/wwdc2017/"
-	doc, e := getContentFromUrl(url)
+	urlApplePrefix := "https://developer.apple.com"
+	//doc, e := getContentFromUrl(urlApplePrefix + "/videos/wwdc2019/")
+
+	doc, e := getContentFromFile("./list.html")
 
 	if e != nil {
 		log.Print(e, " 出错了 系列页访问出错")
@@ -31,25 +32,31 @@ func fetchVideoList() (videos []Video) {
 		var videos_in_category []Video
 		node.Find(".collection-item").Each(func(j int, node_sub *goquery.Selection) {
 
-			imgNode := node_sub.Find(".col-30 img").Eq(0)
+			imgNode := node_sub.Find(".video-image").Eq(0)
 			imageUrl := imgNode.AttrOr("src", "")
 
-			aNode := node_sub.Find(".col-70 a").Eq(0)
+			aNode := node_sub.Find("a").Eq(1)
 			detailUrl := aNode.AttrOr("href", "")
 			detailUrl = urlApplePrefix + detailUrl
 			title := aNode.Find("h4").Eq(0).Text()
 
-			sessionName := node_sub.Find(".col-70 .video-tags .event span.smaller").Eq(0).Text()
-			tags := node_sub.Find(".col-70 .video-tags .focus span.smaller").Eq(0).Text()
+			videoTagsNode := node_sub.Find(".video-tags li")
+			sessionName := videoTagsNode.Eq(0).Text()
+			tags := videoTagsNode.Eq(2).Text()
+			//no fetch detail in detail page list page desc is not complete
+			//desc := node_sub.Find(".description").Text()
+
+
+
+
+			v := Video{}
+			v.CategoryID = category_id
+			v.CategoryTitle = category_title
 
 			c := Category{}
 			c.ID = category_id
 			c.Title = category_title
-
-			v := Video{}
 			v.Category = c
-			v.CategoryID = category_id
-			v.CategoryTitle = category_title
 
 			v.Title = title
 			v.SessionName = sessionName
@@ -57,6 +64,7 @@ func fetchVideoList() (videos []Video) {
 			v.TAGS = tags
 			v.Image = imageUrl
 			v.DetailUrl = detailUrl
+			//v.Desc		= desc
 
 			videos_in_category = append(videos_in_category, v)
 		})

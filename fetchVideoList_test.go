@@ -1,4 +1,4 @@
-package fetchAppleWWDC2017
+package fetchAppleWWDC2019
 
 import (
 	"testing"

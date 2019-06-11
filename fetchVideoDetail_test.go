@@ -1,4 +1,4 @@
-package fetchAppleWWDC2017
+package fetchAppleWWDC2019
 
 import (
 	"fmt"
@@ -10,10 +10,13 @@ func TestBatchFetchVideoDetails(t *testing.T) {
 	batchFetchVideoDetails()
 
 }
+
+
 func TestFetchSingleVideoDetail(t *testing.T) {
 	var videos = readJsonAndDeserialize("output.json")
+	//https://developer.apple.com/videos/play/wwdc2019/714/
 	for _, v := range videos {
-		if v.ID == "241" {
+		if v.ID == "714" {
 			println("detail url is ", v.DetailUrl)
 			v := fetchVideoDetail(v)
 			fmt.Println(v)
