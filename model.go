@@ -27,6 +27,8 @@ type Video struct {
 	PDF   string `json:"PDF"`
 
 	Resources []Resource `json:"resources"`
+	RelatedVideos []RelatedVideo `json:"relatedVideos"`
+
 }
 
 func getUrlFileName(s string) string {
@@ -48,4 +50,10 @@ type Resource struct {
 	URL   string `json:"url"`
 	Title string `json:"title"`
 	Type  string `json:"type"`
+}
+
+type RelatedVideo struct {
+	URL   string `json:"url"`
+	Title string `json:"title"`
+	Year  string `json:"year"`
 }

@@ -134,6 +134,20 @@ func fetchVideoDetail(v Video) Video {
 		resource.Type = typeS
 
 		v.Resources = append(v.Resources, resource)
+
+		//deal the related videos
+		link_ul_node := doc.Find("ul.links").Eq(0)
+		link_ul_node.Find("li a").Each(func(j int, node *goquery.Selection) {
+			relatedVideo := RelatedVideo{}
+			relatedVideo.Title = text
+			relatedVideo.URL = href
+			relatedVideo.URL = href
+
+			v.RelatedVideos = append(v.RelatedVideos, resource)
+		}
+
+
+
 	})
 
 	// iterate related links
